@@ -1,0 +1,44 @@
+version: '2'
+services: 
+  web:
+    image: nginx:alpine
+    links: 
+      - php
+    ports: 
+      - "80:80"
+    volumes:
+      - ./build/nginx.conf:/etc/nginx/conf.d/default.conf
+    volumes_from: 
+      - php
+  php:
+    image: php:fpm-alpine
+    container_name: php
+    volumes:
+      - ./clasrum:/var/www/laravel
+
+  db:
+    image: mariadb
+    environment: 
+      - MYSQL_ROOT_PASSWORD=mava189
+    volumes: 
+      - ./mysql/:/var/lib/mysql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
