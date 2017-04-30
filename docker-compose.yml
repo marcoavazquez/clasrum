@@ -1,44 +1,53 @@
-version: '2'
-services: 
-  web:
-    image: nginx:alpine
-    links: 
-      - php
-    ports: 
-      - "80:80"
+version: '2.1'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=root
+      - MARIADB_DATABASE=clasrum
+      - MARIADB_PASSWORD=mava189
+
+  myapp:
+    tty: true
+    image: bitnami/laravel:latest
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=root
+      - DB_DATABASE=clasrum
+      - DB_PASSWORD=mava189
+    depends_on:
+      - mariadb
+    ports:
+      - 3000:3000
     volumes:
-      - ./build/nginx.conf:/etc/nginx/conf.d/default.conf
-    volumes_from: 
-      - php
-  php:
-    image: php:fpm-alpine
-    container_name: php
-    volumes:
-      - ./clasrum:/var/www/laravel
+      - ./clasrum:/app
 
-  db:
-    image: mariadb
-    environment: 
-      - MYSQL_ROOT_PASSWORD=mava189
-    volumes: 
-      - ./mysql/:/var/lib/mysql
+#version: '2'
+#services: 
+  # web:
+  #   image: nginx:alpine
+  #   links: 
+  #     - php
+  #   ports: 
+  #     - "80:80"
+  #   volumes:
+  #     - ./build/nginx.conf:/etc/nginx/conf.d/default.conf
+  #   volumes_from: 
+  #     - php
+  # php:
+  #   image: php:fpm-alpine
+  #   container_name: php
+  #   volumes:
+  #     - ./clasrum:/var/www/laravel
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  # mysql:
+  #   image: mysql
+  #   container_name: database
+  #   ports: 
+  #     - 3306:3306
+  #   environment: 
+  #     MYSQL_DATABASE: clasrum
+  #     MYSQL_ROOT_PASSWORD: mava189    
+  #   volumes: 
+  #     - ./mysql/:/var/lib/mysql

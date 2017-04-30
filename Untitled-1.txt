@@ -1,11 +1,12 @@
 Aplicación para gestión de alumnos
-El usuario se dará de alta mediante correo electrónico o redes sociales.
-El usuario dará de alta la escuela o escuelas donde imparte clases.
-El usuario podrá guardar sus datos 
-Dentro de cada escuela, el usuario dará de alta Materias.
+El usuario se dará de alta con email o redes sociales.
+El usuario dará de alta la escuela o escuelas.
+El usuario podrá guardar sus datos personales 
+Dentro de cada escuela, dará de alta Materias.
 Por cada matería se almacenará su horario.
 Cada materia tiene sus alumnos.
-Por cada alumno se almacenará sus datos personales, así como su asistencia y calificación
+Por cada alumno se almacenará sus datos personales, 
+así como su asistencia y calificación
 
 Users
     - username
@@ -15,11 +16,26 @@ Users
     - mothers_last_name
     - address
 
+New User
+    [POST]  /users/
+Retrieve User  
+    [GET]   /users/{uuid}
+Update User   
+    [PATCH/PUT] /users/{uuid}   
+Delete User   
+    [DELETE] /users/{uuid} 
+
 Schools
     - key
     - name 
     - level
     - address
+
+Create [POST] /schools/
+Retrieve all [GET] /schools/
+Retrieve one [GET] /schools/{uuid}
+Update [PATCH/PUT] /schools/{uuid}
+Delete [DELETE] /schools/{uuid}
 
 Subjects
     - name
@@ -29,6 +45,9 @@ Subjects
     Relationship
         - school 
         - user 
+
+
+
 
 Students
     - name
