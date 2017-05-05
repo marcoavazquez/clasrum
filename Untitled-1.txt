@@ -17,7 +17,7 @@ Users
     - address
 
 New User
-    [POST]  /users/
+    [POST]  /users/   Don't need authentication
 Retrieve User  
     [GET]   /users/{uuid}
 Update User   
