@@ -23,4 +23,26 @@ class PassportTest extends TestCase
         $response = $this->post('/create-server');
         $response->assertStatus(200);
     }
+
+    /**
+    * 
+    */
+    public function getAuthIdentifierName()
+    {
+
+    }
+
+    /**
+    */
+    public function getAuthIdentifier()
+    {
+
+    }
+
+    /**
+    */
+    public function getAuthPassword()
+    {
+        
+    }
 }
