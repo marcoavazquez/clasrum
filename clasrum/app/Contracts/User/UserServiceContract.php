@@ -2,8 +2,6 @@
 
 namespace App\Contracts\User;
 
-use App\User;
-
 interface UserServiceContract
 {
     /**
