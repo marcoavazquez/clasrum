@@ -52,5 +52,20 @@ class UserService implements UserServiceContract
         return $this->model->findOrFail($id);
     }
 
-    /********Cont*******************/
+    /**
+    * @param array $atributes
+    * @return User
+    */
+    public function create(array $atributes = [])
+    {
+        $atributes['password'] = bcrypt($atributes['password']);
+        $model = $this->model->create($atributes);
+    }
+
+    /**
+    * @param int $id
+    * @param array $atributes
+    * @return User
+    */
+
 }
